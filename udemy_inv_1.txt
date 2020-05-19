@@ -1,0 +1,55 @@
+# VMs on the Gateway Windows 10 PC
+# 232 is Sesame, openSuse 15
+# 123 is Ubuntu 12 Xorb (SLAE machine)
+[gateway]
+192.168.1.232
+192.168.1.123
+# VMs on the Acer Predator Laptop
+# 234 is CentOS 8 collar
+# 112 is Kalilite
+# 50 is Kaleidoscope, host Ubuntu 18 
+[predator]
+192.168.1.234
+192.168.1.112
+192.168.1.50
+192.168.1.235
+# SSH keys working May 16, 2020
+[keyed]
+192.168.1.230
+192.168.1.50
+192.168.1.112
+192.168.1.234
+192.168.1.123
+192.168.1.233
+192.168.1.232
+
+# Define SSH key file
+host ansible_ssh_private_key_file=/home/svcMaestro/.ssh/id_rsa
+
+# Define control VM "Maestro"
+[control]
+192.168.1.230
+
+# Define RedHat/CentOS and Fedora VMs
+# Collar is 234 CentOS server
+# Larry is 231 Fedora server and struggling to network
+[redhat]
+192.168.1.234
+#192.168.1.231
+
+# Define Ubuntu hosts
+# Kaleidoscope (when I feel like it), Xorb, Sandpiper
+[ubuntu]
+192.168.1.233
+192.168.1.123
+
+# Define Suse Linux
+# Sesame is openSUse desktop on Gateway (230)
+# komodo is openSuse server on Predator (235)
+[suse]
+192.168.1.230
+192.168.1.235
+
+# Define Kali Linux
+[kali]
+192.168.1.112
