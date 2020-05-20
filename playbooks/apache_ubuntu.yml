@@ -1,5 +1,5 @@
 ---
-- hosts: ubuntu
+- hosts: sandpiper
   become: true
   tasks:
     - name: install web components
@@ -7,8 +7,7 @@
       with_items:
         - apache2
         - libapache2-mod-wsgi
-        - python-pip
-        - python-virtualenv
+        
 
     - name: ensure apache2 started
       service: name=apache2 state=started enabled=yes

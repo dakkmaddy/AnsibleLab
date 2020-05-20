@@ -1,0 +1,33 @@
+---
+# In this scenario, we will bounce services with Ansible
+# By pretending my VMs are working together in some fashion
+# When in fact, they are not
+
+# CentOS Collar VM is the load balance with nginx
+- hosts: collar
+  become: true
+  tasks:
+    - service: name=nginx state=stopped
+
+# Ubuntu 20 Sandpiper is the web server and mysql DB
+- hosts: sandpiper
+  become: true
+  tasks:
+    - service: name=apache2 state=stopped
+
+- hosts: sandpiper
+  become: true
+  tasks:
+    - service: name=mysql state=restarted
+
+- hosts: sandpiper
+  become: true
+  tasks:
+    - service: name=apache2 state=started
+
+# Bring web balancer (nginx) back up
+
+- hosts: collar
+  become: true
+  tasks:
+    - service: name=nginx state=started
