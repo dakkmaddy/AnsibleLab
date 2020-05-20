@@ -2,10 +2,14 @@
 - hosts: ubuntu
   become: true
   tasks:
-    - name: install apache2
+    - name: install web components
       apt: name={{item}} state=present update_cache=yes
       with_items:
         - apache2
         - libapache2-mod-wsgi
         - python-pip
         - python-virtualenv
+
+    - name: ensure apache2 started
+      service: name=apache2 state=started enabled=yes
+

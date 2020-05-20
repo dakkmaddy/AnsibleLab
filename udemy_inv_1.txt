@@ -53,3 +53,29 @@ host ansible_ssh_private_key_file=/home/svcMaestro/.ssh/id_rsa
 # Define Kali Linux
 [kali]
 192.168.1.112
+
+# Define VMs by hostname while I get this lab up and running better!
+[collar]
+192.168.1.234
+
+[kalilite]
+192.168.1.112
+
+[sesame]
+192.168.1.235
+
+[mozart]
+192.168.1.232
+
+[sandpiper]
+192.168.1.233
+
+# xorb is out of space!
+[xorb]
+192.168.1.123
+
+[kaleidoscope]
+192.168.1.50
+
+[komodo]
+192.168.1.235
