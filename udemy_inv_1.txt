@@ -32,13 +32,14 @@ host ansible_ssh_private_key_file=/home/svcMaestro/.ssh/id_rsa
 
 # Define RedHat/CentOS and Fedora VMs
 # Collar is 234 CentOS server
-# Larry is 231 Fedora server and struggling to network
+# Curly  is 111 Fedora server on the thinkpad
 [redhat]
 192.168.1.234
-#192.168.1.231
+192.168.1.111
 
 # Define Ubuntu hosts
 # Kaleidoscope (when I feel like it), Xorb, Sandpiper
+# Xorb is frigging out of space
 [ubuntu]
 192.168.1.233
 192.168.1.123

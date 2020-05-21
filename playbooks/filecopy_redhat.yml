@@ -1,0 +1,8 @@
+---
+- hosts: redhat
+  become: true
+  tasks:
+
+    - name: copy childish pics from control to webserver
+      copy: src=/home/svcMaestro/pics/ dest=/var/www/html mode=0755
+      notify: restart apache2 

@@ -1,9 +1,9 @@
 ---
-- hosts: sandpiper
+- hosts: redhat
   become: true
   tasks:
     - name: install web components
-      apt: name={{item}} state=present update_cache=yes
+      yum: name={{item}} state=present update_cache=yes
       with_items:
         - apache2
         - libapache2-mod-wsgi
@@ -19,7 +19,9 @@
       copy: src=/home/svcmaestro/pix/ dest=/var/www/html mode=0755
       notify: restart apache2
 
-# First use of a handler. Works with the notify. Notifies aggregate so you do not have to restart several times
+# Trying installer (yum) with handler for restart, an apache_mod enable and a filecopy
+# If it works, you can browse to http://192.168.1.111/burned.jpg and see a picture of fictional spy Sterling Archer
+# Also, a picture of jack in the box
 
   handlers:
     - name: restart apache2
