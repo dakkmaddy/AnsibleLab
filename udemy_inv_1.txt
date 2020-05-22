@@ -8,11 +8,14 @@
 # 234 is CentOS 8 collar
 # 112 is Kalilite
 # 50 is Kaleidoscope, host Ubuntu 18 
+# 235 is komodo openSuse 15
+# 237 is Debian 10 dolche
 [predator]
 192.168.1.234
 192.168.1.112
 192.168.1.50
 192.168.1.235
+192.168.1.237
 # SSH keys working May 16, 2020
 [keyed]
 192.168.1.230
@@ -55,6 +58,10 @@ host ansible_ssh_private_key_file=/home/svcMaestro/.ssh/id_rsa
 [kali]
 192.168.1.112
 
+# Define Debian VMs
+[debian]
+192.168.1.237
+
 # Define VMs by hostname while I get this lab up and running better!
 [collar]
 192.168.1.234
@@ -80,3 +87,6 @@ host ansible_ssh_private_key_file=/home/svcMaestro/.ssh/id_rsa
 
 [komodo]
 192.168.1.235
+
+[dolche]
+192.168.1.237

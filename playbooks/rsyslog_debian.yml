@@ -1,0 +1,16 @@
+---
+- hosts: sandpiper
+  become: true
+  tasks:
+
+# Backup original rsyslog
+
+    - name: copy rsyslog to configuration
+      copy: src=/home/svcmaestro/configs/rsyslog.conf dest=/etc/rsyslog.conf backup=yes
+      notify: restart rsyslog
+
+# First use of a handler. Works with the notify. Notifies aggregate so you do not have to restart several times
+
+  handlers:
+    - name: restart rsyslog
+      service: name=rsyslog state=restarted  

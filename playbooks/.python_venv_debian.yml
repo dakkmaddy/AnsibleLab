@@ -1,0 +1,35 @@
+---
+- hosts: dolche
+  become: true
+  tasks:
+    - name: install web components
+      apt: name={{item}} state=present update_cache=yes
+      with_items:
+        - apache2
+        - libapache2-mod-wsgi
+        - python-pip
+        - python-virtualenv
+
+    - name: ensure apache2 started
+      service: name=apache2 state=started enabled=yes
+
+    - name: ensure mod_wsgi is enabled
+      apache2_module: state=present name=wsgi
+      notify: restart apache2
+
+# This step simulates copying the python virtual environment container. I do not care about this. I just want to practice the playbooks and building
+
+    - name: copy childish pics from control to webserver
+      copy: src=/home/svcmaestro/pix/ dest=/var/www/html mode=0755
+      notify: restart apache2
+
+# While I am at it though, I could copy rsyslog to this VM and get it grooving
+
+    - name copy rsyslog config
+      copy: src=/home/svcmaestro/configs/rsyslog.cfg dest=/etc/rsyslog.conf mode=0644
+
+# First use of a handler. Works with the notify. Notifies aggregate so you do not have to restart several times
+
+  handlers:
+    - name: restart apache2
+      service: name=apache2 state=restarted  
