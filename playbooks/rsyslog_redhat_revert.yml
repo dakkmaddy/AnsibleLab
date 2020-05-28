@@ -1,0 +1,21 @@
+---
+- hosts: redhat
+  become: true
+  tasks:
+
+# Stop rsyslog services
+    - name: Halt rsyslog
+      service: name=rsyslog state=stopped
+
+# Use the command module to revert
+    - name: Backup rsyslog.conf
+      command: /bin/cp -p /etc/rsyslog.conf /etc/rsyslog.revert
+      command: /bin/cp -p /etc/rsyslog.original /etc/rsyslog.conf
+      notify: restart rsyslog
+
+
+# First use of a handler. Works with the notify. Notifies aggregate so you do not have to restart several times
+
+  handlers:
+    - name: restart rsyslog
+      service: name=rsyslog state=restarted  

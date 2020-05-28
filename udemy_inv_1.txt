@@ -4,6 +4,8 @@
 [gateway]
 192.168.1.232
 192.168.1.123
+192.168.1.239
+192.168.1.230
 # VMs on the Acer Predator Laptop
 # 234 is CentOS 8 collar
 # 112 is Kalilite
@@ -25,7 +27,11 @@
 192.168.1.123
 192.168.1.233
 192.168.1.232
-
+192.168.1.235
+192.168.1.236
+192.168.1.237
+192.168.1.238
+192.168.1.239
 # Define SSH key file
 host ansible_ssh_private_key_file=/home/svcMaestro/.ssh/id_rsa
 
@@ -36,9 +42,11 @@ host ansible_ssh_private_key_file=/home/svcMaestro/.ssh/id_rsa
 # Define RedHat/CentOS and Fedora VMs
 # Collar is 234 CentOS server
 # Curly  is 111 Fedora server on the thinkpad
+# Bowtie is a total clone of Collar on predator 238
 [redhat]
 192.168.1.234
 192.168.1.111
+192.168.1.238
 
 # Define Ubuntu hosts
 # Kaleidoscope (when I feel like it), Xorb, Sandpiper
@@ -61,6 +69,7 @@ host ansible_ssh_private_key_file=/home/svcMaestro/.ssh/id_rsa
 # Define Debian VMs
 [debian]
 192.168.1.237
+192.168.1.239
 
 # Define VMs by hostname while I get this lab up and running better!
 [collar]
@@ -70,7 +79,7 @@ host ansible_ssh_private_key_file=/home/svcMaestro/.ssh/id_rsa
 192.168.1.112
 
 [sesame]
-192.168.1.235
+192.168.1.230
 
 [mozart]
 192.168.1.232
@@ -90,3 +99,12 @@ host ansible_ssh_private_key_file=/home/svcMaestro/.ssh/id_rsa
 
 [dolche]
 192.168.1.237
+
+[klondike]
+192.168.1.239
+
+# Accidently assigned bowtie 238, so I changed Klondike to 239
+[bowtie]
+192.168.1.238
+
+# Not sure who 236 is better find out

@@ -1,0 +1,13 @@
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+
+
+# Ansible Hosts
+192.168.1.230 sesame
+192.168.1.232 maestro
+192.168.1.233 sandpiper
+192.168.1.234 collar
+192.168.1.235 komodo
+192.168.1.237 dolche
+192.168.1.238 klondike
+

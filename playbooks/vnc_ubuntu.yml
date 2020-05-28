@@ -1,0 +1,7 @@
+---
+- hosts: kaleidoscope
+  become: true
+  tasks:
+
+    - name: restart vnc
+      service: name=vnc state=restarted  

@@ -1,0 +1,4 @@
+jmm      26730     1  0 19:56 ?        00:00:00 x11vnc -gui tray=setpass -rfbport PROMPT -bg -o %HOME/.x11vnc.log.%VNCDISPLAY
+jmm      26733 26729  0 19:56 tty1     00:00:00 /usr/bin/tail -f /tmp/x11vnc.tray.M5AgaK
+jmm      26736 26729  0 19:56 tty1     00:00:00 [x11vnc] <defunct>
+root     26774  6738  0 19:57 pts/0    00:00:00 grep --color=auto vnc

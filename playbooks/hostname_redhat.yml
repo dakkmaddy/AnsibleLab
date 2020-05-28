@@ -1,0 +1,4 @@
+---
+ - hosts: redhat
+   tasks:
+    - command: hostname
