@@ -1,0 +1,23 @@
+---
+- hosts: debian
+  become: true
+  tasks:
+    - name: install mysql-server
+      apt: name=mysql-server state=present update_cache=yes
+
+# Configure for internal listen with regex
+    - name: ensure mysql listening internally
+      lineinfile: dest=/etc/mysql/my.cnf regexp=^bind-address line="bind-address="127.0.0.1"
+      notify: ensure mysql started
+
+    - name: ensure mysql started
+      service: name=mysql state=started enabled=no
+
+    - name: create dummy database
+      mysql_db: name=demo state=present
+
+# May 19, 2020, added service module
+
+    - name: ensure mysql started
+      service: name=mysql state=started enabled=yes
+

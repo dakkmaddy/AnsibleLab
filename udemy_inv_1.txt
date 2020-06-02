@@ -6,6 +6,7 @@
 192.168.1.123
 192.168.1.239
 192.168.1.230
+192.168.1.236
 # VMs on the Acer Predator Laptop
 # 234 is CentOS 8 collar
 # 112 is Kalilite
@@ -37,7 +38,7 @@ host ansible_ssh_private_key_file=/home/svcMaestro/.ssh/id_rsa
 
 # Define control VM "Maestro"
 [control]
-192.168.1.230
+192.168.1.232
 
 # Define RedHat/CentOS and Fedora VMs
 # Collar is 234 CentOS server
@@ -51,10 +52,11 @@ host ansible_ssh_private_key_file=/home/svcMaestro/.ssh/id_rsa
 # Define Ubuntu hosts
 # Kaleidoscope (when I feel like it), Xorb, Sandpiper
 # Xorb is frigging out of space
+# 236 is garfield new ubuntu 20 server VM
 [ubuntu]
 192.168.1.233
 192.168.1.123
-
+192.168.1.236
 # Define Suse Linux
 # Sesame is openSUse desktop on Gateway (230)
 # komodo is openSuse server on Predator (235)

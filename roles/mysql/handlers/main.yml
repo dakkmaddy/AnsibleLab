@@ -1,0 +1,7 @@
+---
+# handlers file for mysql
+# May 19, 2020, added service module
+
+    - name: ensure mysql started
+      service: name=mysql state=started enabled=yes
+

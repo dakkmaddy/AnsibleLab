@@ -1,0 +1,23 @@
+---
+# tasks file for mysql
+    - name: install mysql-server
+      apt: name=mysql-server state=present update_cache=yes
+
+# Configure for on specific enps03 address
+    - name: ensure mysql listening on enp0s3
+      lineinfile: dest=/etc/mysql/my.cnf regexp=^bind-address line="bind-address= {{ ansible_enp0s3.ipv4.address }}"
+      notify: ensure mysql started
+
+    - name: ensure mysql started
+      service: name=mysql state=started enabled=no
+
+    - name: create dummy database
+      mysql_db: name=demo state=present
+
+# May 19, 2020, added service module
+
+# May 31, this is now contained in the handler/main.yml within the roles/mysql
+#    - name: ensure mysql started
+#      service: name=mysql state=started enabled=yes
+
+

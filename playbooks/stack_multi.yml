@@ -4,30 +4,39 @@
 # When in fact, they are not
 
 # CentOS Collar VM is the load balance with nginx
+# Adding wait_for to give services time
+# state drained is all connections purged
+# Then as service come up and down, states change to stop and started
+#
 - hosts: collar
   become: true
   tasks:
     - service: name=nginx state=stopped
+    - wait_for: port=80 state=drained
 
 # Ubuntu 20 Sandpiper is the web server and mysql DB
 - hosts: sandpiper
   become: true
   tasks:
     - service: name=apache2 state=stopped
+    - wait_for: port=80 state=stopped
 
 - hosts: sandpiper
   become: true
   tasks:
     - service: name=mysql state=restarted
+    - wait_for: port=3306 state=started
 
 - hosts: sandpiper
   become: true
   tasks:
     - service: name=apache2 state=started
-
+    - wait_for: port=80 state=started
+    
 # Bring web balancer (nginx) back up
 
 - hosts: collar
   become: true
   tasks:
     - service: name=nginx state=started
+    - wait_for: port=80 state=started

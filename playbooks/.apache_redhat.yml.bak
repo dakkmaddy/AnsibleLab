@@ -20,7 +20,7 @@
       notify: restart apache2
 
 # Trying installer (yum) with handler for restart, an apache_mod enable and a filecopy
-# If it works, you can browse to http://192.168.1.111/burned.jpg and see a picture of fictional spy Sterling Archer
+# If it works, you can browse to http://192.168.1.xxx/burned.jpg and see a picture of fictional spy Sterling Archer
 # Also, a picture of jack in the box
 
   handlers:

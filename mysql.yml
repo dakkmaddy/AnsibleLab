@@ -1,0 +1,5 @@
+---
+- hosts: klondike
+  become: true
+  roles:
+    - mysql
