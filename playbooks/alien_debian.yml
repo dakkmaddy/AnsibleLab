@@ -1,0 +1,6 @@
+---
+- hosts: debian
+  become: true
+  tasks:
+    - name: install alien
+      apt: name=alien state=present update_cache=yes
