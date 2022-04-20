@@ -1,0 +1,9 @@
+---
+ - hosts: all
+   become: true
+   tasks:
+
+    - name: copy vpn config file tarball to new Parrot Machine, then extract
+      unarchive:
+        src: configs.tar
+        dest: /opt

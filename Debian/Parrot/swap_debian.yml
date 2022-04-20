@@ -1,0 +1,22 @@
+---
+ - hosts: all
+   become: true
+   tasks:
+
+    - name: create the swapfile
+      command: fallocate -l 2G /swapfile
+
+    - name: delay 60 seconds
+      command: sleep 60
+
+    - name: Change perms on /swapfile
+      command: chmod 600 /swapfile
+
+    - name: designate swapfile
+      command: mkswap /swapfile
+
+    - name: activate swap
+      command: swapon /swapfile
+
+    - name: Make changes permanent
+      command: echo "/swapfile swap swap defaults 0 0" >> /etc/fstab
