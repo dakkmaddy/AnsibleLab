@@ -1,0 +1,16 @@
+---
+- hosts: redhat
+  become: true
+  tasks:
+
+# Backup original rsyslog
+
+    - name: disable direct root login
+      lineinfile: 
+        path: /etc/ssh/sshd_config 
+        regexp: '^#PermitRootLogin yes' 
+        backup: yes
+        line: PermitRootLogin no
+     
+    - name: restart ssh
+      service: name=ssh state=restarted update_cache=yes

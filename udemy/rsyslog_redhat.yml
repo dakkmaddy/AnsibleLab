@@ -1,0 +1,25 @@
+---
+- hosts: redhat
+  become: true
+  tasks:
+
+# Use the command module to back up the original /etc/rsyslog.conf
+    - name: Backup rsyslog.conf
+      command: /bin/cp -p /etc/rsyslog.conf /etc/rsyslog.original
+
+# Stop rsyslog services
+    - name: Halt rsyslog
+      service: name=rsyslog state=stopped
+
+# Change the last line to reflect the standard
+
+    - name: use lineinfile to change the change the rsyslog server
+      lineinfile: dest=/etc/rsyslog.conf regexp="#Target"
+                  line="*.* @@10.114.151.44:2060"
+      notify: restart rsyslog
+
+# First use of a handler. Works with the notify. Notifies aggregate so you do not have to restart several times
+
+  handlers:
+    - name: restart rsyslog
+      service: name=rsyslog state=restarted  

@@ -1,0 +1,24 @@
+---
+ - hosts: phobus
+   become: true
+   tasks:
+
+# Install XRDP dependencies
+
+    - name: dependencies
+      apt: name=xfce4 state=present update_cache=yes
+      apt: name=xfce4-goodies state=present update_cache=yes
+      apt: name=xorg state=present update_cache=yes
+      apt: name=dbus-x11 state=present update_cache=yes
+      apt: name=x11-xserver-utils state=present update_cache=yes
+
+# Install XRDP
+
+    - name: xrdp
+      apt: name=xrdp state=present update_cache=yes
+
+# Start and enable XRDP
+
+    - name: start xrdp
+      command: systemctl enable --now xrdp
+

@@ -1,0 +1,4 @@
+---
+ - hosts: phobus
+   tasks:
+    - command: hostname

@@ -1,0 +1,5 @@
+---
+ - hosts: suse
+ - zypper:
+    name: "https://nginx.org/packages/sles/15/x86_64/RPMS/nginx-1.16.1-1.sles15.ngx.x86_64.rpm"
+    state: present

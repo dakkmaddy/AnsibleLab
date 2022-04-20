@@ -1,0 +1,29 @@
+---
+# Fictional, not to be used playbook, just for syntax practice
+# Udemy scenario
+#
+- hosts: redhat
+  become: true
+  tasks:
+    - name: install nginx
+      yum: name=nginx state=present update_cache=yes
+
+    - name: start nginx
+      service: name=nginx state=started enabled=yes
+
+    - name: configure site
+      template: src=/home/svcMaestro/udemy/templates/nginx.conf dest=/etc/nginx/nginx.conf
+      notify: restart nginix
+
+    - name: deactive default site
+      file: path=/etc/nginx/sites-enabled/default state=absent
+      notify: restart nginx
+
+    - name: activate demo site
+      file: path=/etc/nginx/sites-enabled/dest dest=/etc/nginx/sites-enabled/default state=link
+      notify: restart nginx
+
+  handlers:
+    - name: restart nginx
+      service: name=nginx state=restarted
+      

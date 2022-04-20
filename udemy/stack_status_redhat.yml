@@ -1,0 +1,16 @@
+---
+# In this scenario, we will validate services with Ansible
+# By pretending my VMs are running vital services
+# Focus for this is the redhat group
+# Will also use the wait_for function
+
+# Start with ssh status, which has to work for Ansible to work
+
+- hosts: redhat
+  become: true
+  tasks:
+    - name: Check on SSH
+      command: service ssh status
+    
+    - name: Verify port 22
+      wait_for: port=22 timeout=1

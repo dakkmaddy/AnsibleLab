@@ -1,0 +1,4 @@
+---
+ - hosts: suse
+   tasks:
+    - command: hostname

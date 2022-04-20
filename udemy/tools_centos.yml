@@ -1,0 +1,10 @@
+---
+- hosts: redhat
+  become: true
+  tasks:
+    - name: install tools
+      yum: name={{item}} state=present update_cache=yes
+      with_items:
+        - nmap
+        - git
+        - curl

@@ -1,0 +1,12 @@
+---
+- hosts: ubuntu
+  become: true
+  tasks:
+    - name: install mysql-server
+      apt: name=mysql-server state=present update_cache=yes
+
+# May 19, 2020, added service module
+
+    - name: ensure mysql started
+      service: name=mysql state=started enabled=yes
+

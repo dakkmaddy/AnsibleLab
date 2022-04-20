@@ -1,0 +1,20 @@
+---
+- hosts: debian
+  become: true
+  tasks:
+    - name: install apache2
+      apt: apache2 state=present update_cache=yes
+      service: name=apache2 state=started enabled=yes
+
+
+- hosts: redhat
+  become: true
+    - name: install apache
+      yum: apache2 state=present update_cache=yes
+      service: name=apache2 state=started enabled=yes
+
+# First use of a handler. Works with the notify. Notifies aggregate so you do not have to restart several times
+
+  handlers:
+    - name: restart apache2
+      service: name=apache2 state=restarted  
