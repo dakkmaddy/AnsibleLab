@@ -1,0 +1,31 @@
+---
+ - hosts: all
+   become: true
+   tasks:
+
+    - name: touch /swapfile
+      command: touch /swapfile
+
+    - name: change attributes swapfile
+      command: chattr +C /swapfile
+
+    - name: create the swapfile
+      command: sudo dd if=/dev/zero of=/swapfile bs=1024 count=2096576
+
+    - name: delay 60 seconds
+      command: sleep 60
+
+    - name: Change perms on /swapfile
+      command: chmod 600 /swapfile
+
+    - name: designate swapfile
+      command: mkswap /swapfile
+
+    - name: backup /etc/fstab
+      command: /bin/cp /etc/fstab /root/etc.fstab.orig
+
+    - name: edit /etc/fstab
+      command: sed -i -e '$a/swapfile swap swap defaults 0 0' /etc/fstab
+
+    - name: activate swap
+      command: swapon /swapfile
