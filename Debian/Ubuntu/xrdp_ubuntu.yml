@@ -17,6 +17,11 @@
     - name: xrdp
       apt: name=xrdp state=present update_cache=yes
 
+# Configure Group
+    - name: update ssl group
+      command: usermod -a -G ssl-cert xrdp 
+
+
 # Start and enable XRDP
 
     - name: start xrdp

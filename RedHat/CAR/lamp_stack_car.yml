@@ -1,0 +1,21 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: install web components
+      yum: name=httpd state=present update_cache=yes
+
+    - name: ensure apache2 started
+      service: name=httpd state=started enabled=yes
+
+    - name: mysqldb
+      yum: name=mariadb-server state=present update_cache=yes
+
+    - name: ensure mysqldb started and enabled
+      service: name=mariadb-server state=started enabled=yes
+
+    - name: install php module
+      yum: name=php state=present update_cache=yes
+
+    - name: install php-mysqlnd
+      yum: name=php-mysqlnd state=present update_cache=yes
