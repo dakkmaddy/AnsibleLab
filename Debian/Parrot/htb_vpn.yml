@@ -1,5 +1,5 @@
 ---
- - hosts: all
+ - hosts: umbriel
    become: true
    tasks:
 

@@ -1,0 +1,21 @@
+---
+ - hosts: umbriel
+   become: true
+   tasks:
+
+# Remove any older backup file from Vault
+    - name: Removing previous backups
+      command: /bin/rm -rf /home/dakkmaddy/Desktop/Vault/backup.tar
+
+# Compress all files in Vault directory
+    - name: tar files
+      command: tar -cvf /home/dakkmaddy/Desktop/Vault/backup.tar /home/dakkmaddy/Desktop/Vault/ 
+
+
+# Fetch files
+
+    - name: use synchronize to retrieve tarball
+      synchronize:
+        src: /home/dakkmaddy/Desktop/Vault/backup.tar
+        dest: /home/svcMaestro/Backups
+        mode: pull
