@@ -1,0 +1,1 @@
+svc_scanner ALL=(ALL:ALL) NOPASSWD:ALL

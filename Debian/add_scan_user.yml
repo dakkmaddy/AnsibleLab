@@ -1,0 +1,36 @@
+---
+ - hosts: tammy2linux
+   become: true
+   tasks:
+
+# Create the user on the remote node
+    - name: Create user svc_scanner
+      command: useradd --shell /bin/bash --home /home/svc_scanner svc_scanner
+
+# Create the remote 
+
+    - name: Create .ssh directory
+      command: mkdir /home/svc_scanner/.ssh
+
+# Fetch files
+
+    - name: Add the public key to authorized_keys
+      synchronize:
+        src: /home/svcMaestro/AnsibleLab/Debian/Scanner/scan_key.pub
+        dest: /home/svc_scanner/.ssh/authorized_keys
+        mode: push
+
+# Ensure ownership is correct
+
+    - name: Setting ownership for .ssh
+      command: /bin/chown -R svc_scanner:svc_scanner /home/svc_scanner/.ssh
+
+# Ensure permissions are correct for .ssh
+    
+    - name: Setting permissions for .ssh directory
+      command: /bin/chmod 700 /home/svc_scanner/.ssh
+
+# Ensure permissions are correct for authorized_keys
+
+    - name: Setting permissions for .ssh/authorized_keys
+      command: /bin/chmod 600 /home/svc_scanner/.ssh/authorized_keys
