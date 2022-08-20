@@ -1,0 +1,18 @@
+---
+ - hosts: polaris
+   become: true
+   tasks:
+
+# Install ntpdate
+
+    - name: install ntpdate
+      apt: name=ntpdate state=present update_cache=yes
+
+# Query NTPdate
+
+    - name: query ntpdate to ntp.ubuntu.com
+      command: ntpdate -u ntp.ubuntu.com
+      register: ntpo
+
+    - debug: var=ntpo.stdout_lines
+     

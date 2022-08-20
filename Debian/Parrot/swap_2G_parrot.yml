@@ -1,5 +1,5 @@
 ---
- - hosts: all
+ - hosts: polaris
    become: true
    tasks:
 
@@ -10,7 +10,7 @@
       command: chattr +C /swapfile
 
     - name: create the swapfile
-      command: sudo dd if=/dev/zero of=/swapfile bs=1024 count=2096576
+      command: sudo dd if=/dev/zero of=/swapfile bs=2048 count=2096576
 
     - name: delay 60 seconds
       command: sleep 60

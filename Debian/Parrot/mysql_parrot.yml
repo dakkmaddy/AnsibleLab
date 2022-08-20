@@ -1,5 +1,5 @@
 ---
-- hosts: pegasus
+- hosts: polaris
   become: true
   tasks:
     - name: install mysql client

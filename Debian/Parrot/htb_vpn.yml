@@ -1,5 +1,5 @@
 ---
- - hosts: umbriel
+ - hosts: polaris
    become: true
    tasks:
 
