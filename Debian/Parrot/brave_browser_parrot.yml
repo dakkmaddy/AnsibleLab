@@ -1,0 +1,13 @@
+---
+ - hosts: disarray
+   become: true
+   tasks:
+
+    - name: curl keyring
+      command: curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+
+    - name: Add bravo repo
+      command: echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+
+    - name: install brave browser
+      apt: name=brave-browser state=present update_cache=yes

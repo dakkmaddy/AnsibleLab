@@ -1,0 +1,19 @@
+---
+ - hosts: tammy
+   become: true
+   tasks:
+
+# Compress Acquire the cloudfare GPG key
+    - name: GPG key
+      command: curl https://pkg.cloudflareclient.com/pubkey.gpg | gpg --yes --dearmor --output /usr/share/keyrings/cloudflare-warp-archive-keyring.gpg 
+
+
+# Enable repo
+
+    - name: enable cloudfare repo
+      command: echo "deb [arch=amd64 signed-by=/usr/share/keyrings/cloudflare-warp-archive-keyring.gpg] https://pkg.cloudflareclient.com/ $(lsb_release -cs) main" > /etc/apt/sources.list.d/cloudflare-client.list
+
+# Acquire WARP client
+
+    - name: Acquire WARP client
+      apt: name=alien state=present update_cache=yes

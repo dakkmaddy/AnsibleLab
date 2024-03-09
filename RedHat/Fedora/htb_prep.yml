@@ -1,0 +1,9 @@
+---
+- hosts: flipper, zeke
+  become: true
+  tasks:
+    - name: root history to dev null
+      command: ln -sf /dev/null /home/root/.bash_history
+
+    - name: create the root flag
+      shell: openssl rand -hex 20 > /home/root/root.txt

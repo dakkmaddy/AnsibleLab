@@ -1,0 +1,4 @@
+---
+ - hosts: pimpmobile
+   tasks:
+    - command: sudo md5sum /etc/shadow

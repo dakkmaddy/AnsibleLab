@@ -1,0 +1,6 @@
+---
+- hosts: flipper, zeke
+  become: true
+  tasks:
+    - name: create sudoer.d/svcMaestro_sudo
+      command: echo "svcMaestro ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers.d/svcMaestro_sudo

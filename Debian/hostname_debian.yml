@@ -1,4 +1,4 @@
 ---
- - hosts: flamingo
+ - hosts: umpire
    tasks:
     - command: hostname
