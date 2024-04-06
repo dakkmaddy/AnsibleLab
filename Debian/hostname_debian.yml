@@ -1,4 +1,4 @@
 ---
- - hosts: umpire
+ - hosts: dutchman
    tasks:
     - command: hostname

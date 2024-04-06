@@ -1,5 +1,5 @@
 ---
- - hosts: umpire
+ - hosts: dutchman
    become: true
    tasks:
     - command: "md5sum /etc/shadow"
