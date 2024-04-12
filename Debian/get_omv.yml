@@ -1,0 +1,18 @@
+---
+- name: fetch module demo
+  hosts: oldrippy
+  become: true
+  vars:
+    access_log_file: "/var/log/nginx/openmediavault-webgui_access.log"
+    error_log_file: "/var/log/nginx/openmediavault-webgui_error.log"
+    dump_dir: "/srv/Splunk"
+  tasks:
+    - name: fetch access log
+      ansible.builtin.fetch:
+        src: "{{ access_log_file }}"
+        dest: "{{ dump_dir }}"
+ 
+    - name: fetch error log
+      ansible.builtin.fetch:
+        src: "{{ error_log_file }}"
+        dest: "{{ dump_dir }}"
