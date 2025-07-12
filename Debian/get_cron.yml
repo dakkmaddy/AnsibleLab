@@ -1,0 +1,13 @@
+---
+- name: fetch module demo
+  hosts: all
+  become: true
+  vars:
+    log_file: "/var/log/cron"
+    dump_dir: "/srv/Splunk"
+  tasks:
+    - name: fetch log
+      ansible.builtin.fetch:
+        src: "{{ log_file }}"
+        dest: "{{ dump_dir }}"
+ 

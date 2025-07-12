@@ -1,0 +1,17 @@
+---
+- name: fetch module demo
+  hosts: upsilon
+  become: true
+  vars:
+    log_file: "/var/log/shodansurface.csv"
+    log_csv: "/var/log/shodancloud.csv"
+    dump_dir: "/srv/Splunk/ShodanSurface"
+  tasks:
+    - name: fetch log
+      ansible.builtin.fetch:
+        src: "{{ log_file }}"
+        dest: "{{ dump_dir }}"
+    - name: fetch cloud
+      ansible.builtin.fetch:
+        src: "{{ log_csv }}"
+        dest: "{{ dump_dir }}"

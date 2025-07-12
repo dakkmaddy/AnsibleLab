@@ -1,0 +1,17 @@
+---
+- name: fetch module demo
+  hosts: upsilon
+  become: true
+  vars:
+    log_file: "/home/svcMaestro/Jamulus/jamulus_connections.log"
+    log_csv: "/home/svcMaestro/Jamulus/jamulus_locations.log"
+    dump_dir: "/srv/Splunk/Jamulus"
+  tasks:
+    - name: fetch connections
+      ansible.builtin.fetch:
+        src: "{{ log_file }}"
+        dest: "{{ dump_dir }}"
+    - name: fetch locations
+      ansible.builtin.fetch:
+        src: "{{ log_csv }}"
+        dest: "{{ dump_dir }}"

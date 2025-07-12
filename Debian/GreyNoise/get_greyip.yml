@@ -1,0 +1,5 @@
+---
+ - hosts: uppity,ubique,ubique252201
+   become: true
+   tasks:
+    - command: "find /home -type f -mtime -7 -exec grep \"NOISE\"  {} \\; | grep -v \"NOT NOISE\" | awk -F' ' '{print $1}' | sort | uniq | wc -l > /tmp/weeklynoise.txt"
