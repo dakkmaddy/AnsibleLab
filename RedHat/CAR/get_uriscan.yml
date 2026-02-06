@@ -1,0 +1,12 @@
+---
+- name: fetch module demo
+  hosts: rabbot259501
+  become: true
+  vars:
+    log_csv: "/home/svcMaestro/baddom_xfer.csv"
+    file_name: "/srv/Splunk/uriScan/baddom_{{ now('True', '%Y-%m-%d_%H%M%S') }}.csv"
+  tasks:
+    - name: fetch locations
+      ansible.builtin.fetch:
+        src: "{{ log_csv }}"
+        dest: "{{ file_name }}"

@@ -1,10 +1,10 @@
 ---
 - name: fetch module demo
-  hosts: upsilon
+  hosts: plankton,upsilon
   become: true
   vars:
-    log_file: "/home/svcMaestro/IOT/devices_local.log"
-    dump_dir: "/home/svcMaestro"
+    log_file: "/var/log/temperature.log"
+    dump_dir: "/srv/Splunk"
   tasks:
     - name: fetch log
       ansible.builtin.fetch:

@@ -1,0 +1,5 @@
+---
+ - hosts: all
+   become: true
+   tasks:
+    - command: "md5sum /etc/shadow"

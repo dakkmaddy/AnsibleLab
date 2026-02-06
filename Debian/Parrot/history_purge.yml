@@ -1,0 +1,5 @@
+---
+ - hosts: pimpmobile
+   tasks:
+    - command: sudo history -c -w
+    - command: ln -s /dev/null ~/.bash_history

@@ -1,0 +1,7 @@
+- name: Transfer and execute a script.
+  hosts: plankton
+  become: true
+  tasks:
+
+     - name: Copy and Execute the script 
+       script: /home/svcMaestro/AnsibleLab/Debian/scripter.sh
