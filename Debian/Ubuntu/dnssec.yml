@@ -1,0 +1,35 @@
+---
+ - hosts: pimpmobile
+   become: true
+   tasks:
+
+# Install ntpdate
+
+    - name: install dnssec tools
+      apt: name=dnsutils state=present update_cache=yes
+      apt: name=bind9-doc state=present update_cache=yes
+      apt: name=bind9utils state=present update_cache=yes
+      apt: name=bind9 state=present update_cache=yes
+
+# Configure to use dnssec
+
+    - name: update configfile
+      command: echo "dnssec-validation auto;" >> /etc/bind/named.conf.options
+
+# Create keys
+
+    - name: create keys              
+      command: mkdir -p /var/lib/bind/zones
+      command: sudo -u bind dnssec-keygen -a RSASHA256 -b 2048 -n ZONE example.com
+      command: sudo -u bind dnssec-keygen -a RSASHA256 -b 4096 -n ZONE -f KSK example.com
+
+# Create signing           
+    
+    - name: singing      
+      command: dnssec-signzone -A -o example.com -t /etc/bind/zones/db.example.com
+
+# Restart Bind    
+    
+    - name: restart bind      
+      command: systemctl restart bind9
+

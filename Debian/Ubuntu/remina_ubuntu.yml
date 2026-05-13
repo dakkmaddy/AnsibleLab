@@ -1,0 +1,6 @@
+---
+- hosts: upsilon
+  become: true
+  tasks:
+    - name: install alien
+      apt: name=remmina state=present update_cache=yes
